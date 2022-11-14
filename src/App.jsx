@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react' 
+import { useEffect, useState } from 'react'
 import { Routes, BrowserRouter, Route } from 'react-router-dom'
 import { GetServiceLisCompanies } from '../API/Services/CompaniesServices'
 import { GetServiceLisEmployee } from '../API/Services/EmployeeServices'
 import HeaderPage from './Components/Common/HeaderPage'
 import LandingPage from './Components/Common/LandingPage'
-import CompaniesList from './Components/Companies/CompaniesList' 
+import CompaniesList from './Components/Companies/CompaniesList'
 import EmployeesList from './Components/Employees/EmployeesList'
- 
 
-function App() { 
+
+function App() {
 
   const [listEmployees, setListEmployees] = useState([])
   const [listCompanies, setListCompanies] = useState([])
@@ -18,46 +18,49 @@ function App() {
 
   const handleListCompanies = async () => {
     let arrList = await GetServiceLisCompanies()
-    setListCompanies( arrList)
+    setListCompanies(arrList)
   }
   const handleListEmployees = async () => {
-    let arrList = await GetServiceLisEmployee() 
-    setListEmployees( arrList)
-}
+    let arrList = await GetServiceLisEmployee()
+    setListEmployees(arrList)
+  }
 
-  useEffect(() => { 
+  useEffect(() => {
     handleListEmployees()
-    handleListCompanies()  
+    handleListCompanies()
   }, [])
   return (
- 
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HeaderPage/>}>
-            <Route index element={<LandingPage/>}/>  
-            <Route path='CompaniesList' element={
-              <CompaniesList 
-                handleListCompanies={handleListCompanies} 
-                listCompanies={listCompanies} 
-                setListCompanies={setListCompanies} 
-                editModeCompany={editModeCompany}
-                seteditModeCompany={seteditModeCompany}
-                listEmployees={listEmployees}
-              />}
-            />
-            <Route path='EmployeesList' element={
-              <EmployeesList 
-                handleListEmployees={handleListEmployees}
-                listEmployees={listEmployees} 
-                setListEmployees={setListEmployees} 
-                listCompanies={listCompanies}  
-                editModeEmployee={editModeEmployee}
-                seteditModeEmployee={seteditModeEmployee}
-              />}
-            />
-          </Route>
-        </Routes>
-      </BrowserRouter> 
+    <>
+      <div className="h-screen bg-gray-800">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HeaderPage />}>
+              <Route index element={<LandingPage />} />
+              <Route path='CompaniesList' element={
+                <CompaniesList
+                  handleListCompanies={handleListCompanies}
+                  listCompanies={listCompanies}
+                  setListCompanies={setListCompanies}
+                  editModeCompany={editModeCompany}
+                  seteditModeCompany={seteditModeCompany}
+                  listEmployees={listEmployees}
+                />}
+              />
+              <Route path='EmployeesList' element={
+                <EmployeesList
+                  handleListEmployees={handleListEmployees}
+                  listEmployees={listEmployees}
+                  setListEmployees={setListEmployees}
+                  listCompanies={listCompanies}
+                  editModeEmployee={editModeEmployee}
+                  seteditModeEmployee={seteditModeEmployee}
+                />}
+              />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </>
   )
 }
 
