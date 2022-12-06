@@ -1,6 +1,6 @@
 export const GetServiceLisEmployee = async () : Promise<[]> => {
     try {
-        const url = `http://localhost:4000/api/employees`
+        const url = `http://abtbackenazz.netlify.app/api/employees`
         const resp = await fetch(url)
         const data = await resp.json()
         const List = data.listEmployees
@@ -12,7 +12,7 @@ export const GetServiceLisEmployee = async () : Promise<[]> => {
 
 export const deleteServiceEmployee = async (id: string) : Promise<{}> =>{
     try {
-    const url = `http://localhost:4000/api/employees/${id}`
+    const url = `http://abtbackenazz.netlify.app/api/employees/${id}`
     const resp = await fetch(url ,{
         method: 'DELETE'})
     const data = await resp.json()
@@ -25,7 +25,7 @@ export const deleteServiceEmployee = async (id: string) : Promise<{}> =>{
 
 export const addServiceEmployee = async (body:{}) =>{ 
     try {
-    const  url = `http://localhost:4000/api/employees`
+    const  url = `http://abtbackenazz.netlify.app/api/employees`
     const resp = await fetch(url,{
         headers: {
             'Accept': 'application/json',
@@ -42,7 +42,7 @@ export const addServiceEmployee = async (body:{}) =>{
 }
 export const editServiceEmployee = async (body:{},id: string) =>{ 
     try {
-    const  url = `http://localhost:4000/api/employees/${id}`
+    const  url = `http://abtbackenazz.netlify.app/api/employees/${id}`
     const resp = await fetch(url,{
         headers: {
             'Accept': 'application/json',
